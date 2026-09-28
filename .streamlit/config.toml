@@ -1,0 +1,24 @@
+[theme]
+base = "light"
+# Paleta institucional: azul marino y rojo, tomados del logo UCV
+primaryColor = "#1D2A57"
+backgroundColor = "#F4F6FA"
+secondaryBackgroundColor = "#E8EDF5"
+textColor = "#1B2433"
+borderColor = "#D5DCE8"
+linkColor = "#1D2A57"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+baseRadius = "medium"
+showWidgetBorder = true
+
+redColor = "#E3051B"
+greenColor = "#1A7F4B"
+blueColor = "#1D2A57"
+orangeColor = "#B86E00"
+
+dataframeHeaderBackgroundColor = "#E8EDF5"
+chartCategoricalColors = ["#1D2A57", "#E3051B", "#1A7F4B", "#B86E00", "#5B5F97"]
+
+[theme.sidebar]
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F4F6FA"

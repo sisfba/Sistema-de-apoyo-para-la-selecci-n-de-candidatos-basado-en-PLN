@@ -49,6 +49,36 @@ def extract_text_from_pdf(path):
     return "\n".join(lines)
 
 
+def extract_text_from_docx(path):
+    """
+    Extrae el texto de un CV en Word (.docx): párrafos del cuerpo y, a
+    continuación, el contenido de las tablas (muchas plantillas de CV
+    maquetan secciones enteras dentro de tablas). Se aplica la misma
+    limpieza de líneas vacías que en extract_text_from_pdf.
+    """
+    import docx  # python-docx; solo se necesita para CVs en Word
+
+    documento = docx.Document(path)
+    lineas = [p.text for p in documento.paragraphs]
+    for tabla in documento.tables:
+        for fila in tabla.rows:
+            celdas = []
+            for celda in fila.cells:
+                if celda.text not in celdas:  # las celdas combinadas se repiten
+                    celdas.append(celda.text)
+            lineas.extend(celdas)
+    lineas = [l.strip() for l in "\n".join(lineas).split("\n")]
+    return "\n".join(l for l in lineas if l)
+
+
+def extract_text(path, nombre=""):
+    """Elige el extractor según la extensión (.docx -> Word; cualquier otra -> PDF)."""
+    ref = str(nombre or path).lower()
+    if ref.endswith(".docx"):
+        return extract_text_from_docx(path)
+    return extract_text_from_pdf(path)
+
+
 def _group_into_rows(words, top_tolerance=4.0):
     """Agrupa palabras en filas visuales según su posición vertical (top)."""
     ordered = sorted(words, key=lambda w: (w["top"], w["x0"]))

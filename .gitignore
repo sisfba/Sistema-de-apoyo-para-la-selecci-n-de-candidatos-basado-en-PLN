@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.idea/
+*.pyc
+# puestos agregados desde la interfaz (datos locales de cada usuario)
+ofertas_personalizadas.json
+# los CVs de prueba no se publican (ver Anexo A del informe)
+cvs_80/
+*.pdf
+.streamlit/secrets.toml
